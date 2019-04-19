@@ -1,0 +1,25 @@
+{
+  "name": "loopback3-datatable",
+  "version": "0.1.2",
+  "description": "Add count and data objects to model responses",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "loopback",
+    "mongodb",
+    "nodeJs",
+    "datatables"
+  ],
+  "author": "Thomas Vié",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
