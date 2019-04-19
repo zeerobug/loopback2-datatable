@@ -7,13 +7,14 @@ Response:
 ```json
   "response": {
     "data": [
-      {item_1}
-      {item_2}
+      {"item_1": "val_1"}
+      {"item_2": "val_2"}
       ...
-      {item_n}
+      {"item_n": "val_n"}
     ],
-    "count": total_items
+    "count": "total_items"
   }
+
 ```
 
 ## Install
