@@ -32,19 +32,22 @@ module.exports = function(app, options) {
     // console.log(params);
     let direction = params.ascending == 1 ? "ASC" : "DESC";
     let order = params.orderBy ? `${params.orderBy} ${direction}` : "";
-    let where = {};
+    let whereOr = [];
+    let obj = {};
     if (params.filterFields && params.query != "") {
       params.filterFields.forEach(field => {
-        if (!where[field]) where[field] = {};
-        where[field]["regexp"] = `/.*${params.query}.*/`;
+        obj = {};
+        obj[field] = { regexp: `/.*${params.query}.*/` };
+        whereOr.push(obj);
       });
     }
     ctx.args.filter = {
       skip: (params.page - 1) * params.limit,
-      order: order,
+      order,
       limit: params.limit,
-      where: where
+      where: whereOr.length > 0 ? { or: whereOr } : {}
     };
+    // console.log(JSON.stringify(ctx.args.filter, null, 4));
 
     next();
   };
