@@ -1,6 +1,6 @@
 {
   "name": "loopback3-datatable",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Add count and data objects to model responses",
   "main": "index.js",
   "scripts": {

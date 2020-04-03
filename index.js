@@ -44,7 +44,13 @@ module.exports = function(app, options) {
     // merge with existing query
     let where = {};
     let filter = {};
-    if(params.filter) filter = JSON.parse(params.filter);
+    if(params.filter) {
+	try { 
+	  filter = JSON.parse(params.filter);
+	} catch(e) {
+	  filter = params.filter
+	}
+    }
     if (filter.where) {
       if (whereOr.length > 0) where = { and: filter.where, or: whereOr };
       else where = filter.where;
