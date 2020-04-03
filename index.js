@@ -41,13 +41,23 @@ module.exports = function(app, options) {
         whereOr.push(obj);
       });
     }
+    // merge with existing query
+    let where = {};
+    if (params.filter && params.filter.where) {
+      if (whereOr.length > 0) where = { and: params.filter.where, or: whereOr };
+      else where = params.filter.where;
+    } else {
+      where = whereOr.length > 0 ? { or: whereOr } : {};
+    }
     ctx.args.filter = {
       skip: (params.page - 1) * params.limit,
       order,
       limit: params.limit,
-      where: whereOr.length > 0 ? { or: whereOr } : {}
+      where: where,
+      include: params.include,
+      counts: params.counts
     };
-    // console.log(JSON.stringify(ctx.args.filter, null, 4));
+    console.log('Status: ',JSON.stringify(ctx.args.filter, null, 4));
 
     next();
   };
