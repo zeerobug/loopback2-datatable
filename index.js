@@ -43,9 +43,11 @@ module.exports = function(app, options) {
     }
     // merge with existing query
     let where = {};
-    if (params.filter && params.filter.where) {
-      if (whereOr.length > 0) where = { and: params.filter.where, or: whereOr };
-      else where = params.filter.where;
+    let filter = {};
+    if(params.filter) filter = JSON.parse(params.filter);
+    if (filter.where) {
+      if (whereOr.length > 0) where = { and: filter.where, or: whereOr };
+      else where = filter.where;
     } else {
       where = whereOr.length > 0 ? { or: whereOr } : {};
     }
@@ -57,7 +59,7 @@ module.exports = function(app, options) {
       include: params.include,
       counts: params.counts
     };
-
+    //console.log("Filter",ctx.args.filter)
     next();
   };
 
