@@ -57,7 +57,6 @@ module.exports = function(app, options) {
       include: params.include,
       counts: params.counts
     };
-    console.log('Status: ',JSON.stringify(ctx.args.filter, null, 4));
 
     next();
   };
